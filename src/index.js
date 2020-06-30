@@ -97,7 +97,7 @@ const EditableLabel = props => {
             
           }}
         >
-          {<FontAwesomeIcon icon={faPencilAlt} size="1x" className="fs-10" />}
+          {<FontAwesomeIcon icon={faPencilAlt} size="1x" className={style.fs10} />}
         </span>:null}
         {props.isWebsite === true ? (
           <span className={style.webicon}>

@@ -12017,12 +12017,6 @@ var _editablelabel2 = _interopRequireDefault(_editablelabel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _ref = _jsx(_reactFontawesome.FontAwesomeIcon, {
-  icon: _freeSolidSvgIcons.faPencilAlt,
-  size: '1x',
-  className: 'fs-10'
-});
-
 var EditableLabel = function EditableLabel(props) {
   var _useState = (0, _react.useState)('label'),
       _useState2 = _slicedToArray(_useState, 2),
@@ -12105,7 +12099,11 @@ var EditableLabel = function EditableLabel(props) {
         setView('text');
       }
     }
-  }, void 0, _ref) : null, props.isWebsite === true ? _jsx('span', {
+  }, void 0, _jsx(_reactFontawesome.FontAwesomeIcon, {
+    icon: _freeSolidSvgIcons.faPencilAlt,
+    size: '1x',
+    className: _editablelabel2.default.fs10
+  })) : null, props.isWebsite === true ? _jsx('span', {
     className: _editablelabel2.default.webicon
   }, void 0, _jsx('a', {
     href: value
@@ -12136,7 +12134,7 @@ EditableLabel.defaultProps = {
   inputType: 'text',
   disableKeys: false,
   heading: '',
-  isWebsite: true,
+  isWebsite: false,
   isEditIcon: true
 };
 
