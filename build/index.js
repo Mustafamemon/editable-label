@@ -12108,7 +12108,7 @@ var EditableLabel = function EditableLabel(props) {
   }, void 0, _ref) : null, props.isWebsite === true ? _jsx('span', {
     className: _editablelabel2.default.webicon
   }, void 0, _jsx('a', {
-    href: { value: value }
+    href: value
   }, void 0, _jsx(_reactFontawesome.FontAwesomeIcon, {
     icon: _freeSolidSvgIcons.faExternalLinkAlt,
     size: '1x',
@@ -12136,7 +12136,7 @@ EditableLabel.defaultProps = {
   inputType: 'text',
   disableKeys: false,
   heading: '',
-  isWebsite: false,
+  isWebsite: true,
   isEditIcon: true
 };
 

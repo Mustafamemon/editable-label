@@ -101,7 +101,7 @@ const EditableLabel = props => {
         </span>:null}
         {props.isWebsite === true ? (
           <span className={style.webicon}>
-            <a href={{ value }}>
+            <a href={value}>
               {
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}
