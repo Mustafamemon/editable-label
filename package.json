@@ -2,14 +2,11 @@
   "name": "editable-label",
   "version": "1.0.0",
   "description": "A simple React component for switching between a text label and a text input.",
-  "main": ".build/lib/index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "./build/index.js",
   "scripts": {
     "build": "webpack"
   },
-  "author": "Mustafa Manga",
+  "author": "mustafamanga",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
