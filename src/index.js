@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
-// import css from './css/editablelabel.css';
+import style from './css/editablelabel.css';
 
 const EditableLabel = props => {
   const [view, setView] = useState('label');
@@ -89,7 +89,7 @@ const EditableLabel = props => {
       <h5>
         {props.heading}
         {props.isEditIcon?<span
-          className="edit-icon"
+          className={style.editicon}
           onClick={() => {
             if(view === 'label'){ 
               setView('text')
@@ -100,20 +100,20 @@ const EditableLabel = props => {
           {<FontAwesomeIcon icon={faPencilAlt} size="1x" className="fs-10" />}
         </span>:null}
         {props.isWebsite === true ? (
-          <span className="web-icon">
+          <span className={style.webicon}>
             <a href={{ value }}>
               {
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}
                   size="1x"
-                  className="fs-10"
+                  className={style.fs10}
                 />
               }
             </a>
           </span>
         ) : null}
 
-        <div className={'pt-6'}>
+        <div className={style.pt6}>
           <h6>{view === 'label' ? renderLabel() : renderInput()}</h6>
         </div>
       </h5>

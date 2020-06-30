@@ -24,9 +24,17 @@ var config = {
                 use: ['babel-loader']
             },
             {
-                test: /\.css$/i,
-                include: APP_DIR+'/css' ,
-                use: ['style-loader','css-loader']
+                test: /\.css$/,
+                exclude: APP_DIR+'/css' ,
+                use: [
+                       'style-loader',
+                       {
+                         loader: 'css-loader',
+                         options: {
+                           modules: true,
+                         },
+                       },
+                    ],
             }
 
         ]

@@ -1,18 +1,18 @@
-.edit-icon{
+.editicon{
     padding: 0px 4px;
     vertical-align: super;
     color:rgb(84, 92, 216);
     cursor:pointer
   }
-.web-icon{
+.webicon{
     padding: 0px 4px;
     vertical-align: super;
     color:rgb(84, 92, 216);
     cursor:pointer
 }
-.fs-10{
+.fs10{
     font-size: 10px 
 }
-.pt-6{
+.pt6{
     padding-top: 6px; 
 }
