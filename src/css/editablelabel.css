@@ -1,18 +1,47 @@
 .editicon{
     padding: 0px 4px;
-    vertical-align: super;
     color:rgb(84, 92, 216);
-    cursor:pointer
+    cursor:pointer;
+    vertical-align:text-top
+
   }
 .webicon{
     padding: 0px 4px;
-    vertical-align: super;
     color:rgb(84, 92, 216);
-    cursor:pointer
+    cursor:pointer;
+    vertical-align:text-top
+
 }
 .fs10{
     font-size: 10px 
 }
 .pt6{
     padding-top: 6px; 
+}
+
+.opacity0{
+    opacity: 0 !important;
+}
+
+.opacity1{
+    opacity: 1 !important;
+}
+/* tick + cross*/
+
+.inputicon{
+    left:110px;
+}
+.w30{
+    width: 30px;
+}
+.pointer {
+    cursor: pointer;
+}
+button:focus {
+    outline:0;
+}
+
+/* remove input focus */
+*:focus {
+    outline: none;
 }

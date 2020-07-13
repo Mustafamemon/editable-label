@@ -1,36 +1,44 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useRef } from "react";
+import cx from "classnames";
+import PropTypes from "prop-types";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faExternalLinkAlt,
+  faPencilAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
-import style from './css/editablelabel.css';
+import style from "./css/editablelabel.css";
 
-const EditableLabel = props => {
-  const [view, setView] = useState('label');
+const EditableLabel = (props) => {
+  const textInput = useRef(null);
+  const [view, setView] = useState("label");
   const [value, setValue] = useState(props.initialValue);
-  const [previous, setPrevious] = useState(props.initialValue);
+  const [previous, setPrevious] = useState(props.initialoValue);
+  const [hoverEditIcon, setHoverEditIcon] = useState(false);
+
   useEffect(() => {
-    if (view === 'text') {
+    if (view === "text") {
       textInput.current.focus();
     }
   }, [view, textInput]);
+
   useEffect(() => {
-    setValue(props.initialValue || '-');
+    setValue(props.initialValue || "-");
+    setPrevious(props.initialValue || "-");
   }, [props.initialValue]);
-  const textInput = useRef(null);
-  const keyUp = e => {
+  const keyUp = (e) => {
     if (props.disableKeys === true) {
       return;
     }
 
-    if (e.key === 'Escape') {
-      setValue(previous || '-');
-      setView('label');
-    } else if (e.key === 'Enter') {
-      setValue(e.target.value || '-');
-      setPrevious(e.target.value || '-');
-      setView('label');
+    if (e.key === "Escape") {
+      setValue(previous || "-");
+      setView("label");
+    } else if (e.key === "Enter") {
+      setValue(e.target.value || "-");
+      setPrevious(e.target.value || "-");
+      setView("label");
 
       props.save(e.target.value);
     }
@@ -40,10 +48,10 @@ const EditableLabel = props => {
     if (props.isWebsite)
       return (
         <a
-          href={'#'}
-          onClick={e => {
+          href="#d"
+          onClick={(e) => {
             e.preventDefault();
-            setView('text');
+            setView("text");
           }}
         >
           {value}
@@ -52,9 +60,9 @@ const EditableLabel = props => {
     else
       return (
         <span
-          className={props.labelClass || ''}
+          className={props.labelClass || ""}
           onClick={() => {
-            setView('text');
+            setView("text");
           }}
         >
           {value}
@@ -65,56 +73,92 @@ const EditableLabel = props => {
   const renderInput = () => {
     return (
       <div>
-        <input
-          type={props.inputType}
-          value={value}
-          ref={textInput}
-          className={props.inputClass || ''}
-          onChange={e => {
-            setValue(e.target.value);
-          }}
-          onBlur={e => {
-            console.log(view)
-            setView('label');
-            setPrevious(e.target.value);
-            props.save(e.target.value);
-          }}
-          onKeyUp={keyUp}
-        />
+        <div>
+          <input
+            type={props.inputType}
+            value={value}
+            ref={textInput}
+            className={props.inputClass || ""}
+            onChange={(e) => {
+              setValue(e.target.value);
+            }}
+            // onBlur={(e) => {
+            //   setView("label");
+            //   setPrevious(e.target.value);
+            //   props.save(e.target.value);
+            // }}
+            onKeyUp={keyUp}
+          />
+          <div className={cx(style.inputicon, "position-relative")}>
+            <button
+              className={cx(style.w30, "border-0")}
+              onClick={() => {
+                const e = { ...textInput };
+                setPrevious(e.current.value);
+                props.save(e.current.value);
+                setView("label");
+              }}
+            >
+              <span className={"text-secondary"}>&#10003;</span>
+            </button>
+
+            <span className="pl-1 pr-1" />
+            <button
+              className={cx(style.w30, "border-0")}
+              onClick={() => {
+                setValue(previous || "-");
+                setView("label");
+              }}
+            >
+              <span className={"text-secondary"}>&#10007;</span>
+            </button>
+          </div>
+        </div>
       </div>
     );
   };
   return (
-    <div>
+    <div
+      onMouseEnter={() => setHoverEditIcon(true)}
+      onMouseLeave={() => setHoverEditIcon(false)}
+    >
       <h5>
         {props.heading}
-        {props.isEditIcon?<span
-          className={style.editicon}
-          onClick={() => {
-            if(view === 'label'){ 
-              setView('text')
+        <span className={cx(style.webicon, { "d-none": !props.isWebsite })}>
+          <a href={value}>
+            {
+              <FontAwesomeIcon
+                icon={faExternalLinkAlt}
+                size="2x"
+                className={style.fs10}
+              />
             }
-            
+          </a>
+        </span>
+
+        <span
+          className={cx(style.editicon, {
+            [style.opacity0]: !hoverEditIcon,
+            [style.opacity1]: hoverEditIcon,
+            "d-none": !props.isEditIcon,
+          })}
+          onClick={() => {
+            if (view === "label") {
+              setView("text");
+            }
           }}
         >
-          {<FontAwesomeIcon icon={faPencilAlt} size="1x" className={style.fs10} />}
-        </span>:null}
-        {props.isWebsite === true ? (
-          <span className={style.webicon}>
-            <a href={value}>
-              {
-                <FontAwesomeIcon
-                  icon={faExternalLinkAlt}
-                  size="1x"
-                  className={style.fs10}
-                />
-              }
-            </a>
-          </span>
-        ) : null}
+          {
+            <FontAwesomeIcon
+              icon={faPencilAlt}
+              size="1x"
+              className={style.fs10}
+            />
+          }
+        </span>
 
         <div className={style.pt6}>
-          <h6>{view === 'label' ? renderLabel() : renderInput()}</h6>
+          <h6>{view === "label" ? renderLabel() : renderInput()}</h6>
         </div>
       </h5>
     </div>
@@ -132,12 +176,12 @@ EditableLabel.propTypes = {
   disableKeys: PropTypes.bool,
   heading: PropTypes.string,
   isWebsite: PropTypes.bool,
-  isEditIcon:PropTypes.bool,
+  isEditIcon: PropTypes.bool,
 };
 EditableLabel.defaultProps = {
-  inputType: 'text',
+  inputType: "text",
   disableKeys: false,
-  heading: '',
+  heading: "",
   isWebsite: false,
-  isEditIcon:true,
-}
+  isEditIcon: true,
+};
