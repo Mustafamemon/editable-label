@@ -28,11 +28,10 @@
 }
 /* tick + cross*/
 
-.inputicon{
-    left:110px;
-}
-.w30{
-    width: 30px;
+.wh20{
+    width: 20px;
+    height: 20px;
+    padding: 0 2px 2px 2px;
 }
 .pointer {
     cursor: pointer;
@@ -40,8 +39,21 @@
 button:focus {
     outline:0;
 }
+.card{
+    display: flex;
+    justify-content: center;
+    width: 60px;
+    height: 26px;
+    border-bottom: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    padding-top:2px;
+    box-shadow:1px 1px 5px rgba(0, 0, 0, 0.1);
+    float:right;
 
+}
 /* remove input focus */
 *:focus {
-    outline: none;
+    outline-color:rgba(82, 168, 236, 0.8);
+
 }

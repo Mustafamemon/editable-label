@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+
 import cx from "classnames";
 import PropTypes from "prop-types";
 
@@ -43,7 +44,7 @@ const EditableLabel = (props) => {
       props.save(e.target.value);
     }
   };
-
+  
   const renderLabel = () => {
     if (props.isWebsite)
       return (
@@ -89,9 +90,11 @@ const EditableLabel = (props) => {
             // }}
             onKeyUp={keyUp}
           />
-          <div className={cx(style.inputicon, "position-relative")}>
+          <div >
+            <div className={style.card}>
+          
             <button
-              className={cx(style.w30, "border-0")}
+              className={cx(style.wh20, "border-0 rounded")}
               onClick={() => {
                 const e = { ...textInput };
                 setPrevious(e.current.value);
@@ -102,9 +105,9 @@ const EditableLabel = (props) => {
               <span className={"text-secondary"}>&#10003;</span>
             </button>
 
-            <span className="pl-1 pr-1" />
+            <span className="p-1" />
             <button
-              className={cx(style.w30, "border-0")}
+              className={cx(style.wh20, "border-0 rounded")}
               onClick={() => {
                 setValue(previous || "-");
                 setView("label");
@@ -112,6 +115,7 @@ const EditableLabel = (props) => {
             >
               <span className={"text-secondary"}>&#10007;</span>
             </button>
+            </div>
           </div>
         </div>
       </div>
@@ -121,6 +125,7 @@ const EditableLabel = (props) => {
     <div
       onMouseEnter={() => setHoverEditIcon(true)}
       onMouseLeave={() => setHoverEditIcon(false)}
+      style={{width:'182px'}}
     >
       <h5>
         {props.heading}
@@ -158,7 +163,7 @@ const EditableLabel = (props) => {
         </span>
 
         <div className={style.pt6}>
-          <h6>{view === "label" ? renderLabel() : renderInput()}</h6>
+        <h6>  {view === "label" ? renderLabel(): renderInput()}</h6> 
         </div>
       </h5>
     </div>
