@@ -1,24 +1,17 @@
-name: Semantic Version
-
-on: 
+name: Run versionist
+on:
   push:
     tags:
-    - '*'
+      - '*'
 
 jobs:
-
-  build:
+  versionist:
     runs-on: ubuntu-latest
-    steps:
+    steps: 
     - uses: actions/checkout@v1
-    - name: Process version of the tag
-      id: version
-      uses: ncipollo/semantic-version-action@v1
-    - name: Dump steps context
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps.version.outputs) }}
-      run: echo "$STEPS_CONTEXT"
-    - name: Dump previous tag
-      env:
-        PREVIOUS_TAG: ${{ steps.version.outputs.previous_tag }}
-      run: echo "$PREVIOUS_TAG"
+    - uses: tmigone/versionist-action@master
+      with:
+        github_email: 'tomasmigone@gmail.com'
+        github_username: 'Tomás Migone'
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        npm_token: ${{ secrets.NPM_TOKEN }}
