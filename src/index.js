@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faExternalLinkAlt,
   faPencilAlt,
+  faExternalLinkAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 import style from "./css/editablelabel.css";
