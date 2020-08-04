@@ -80,4 +80,4 @@ Example:
   
 ###   [Original Repository](https://github.com/Mustafamemon/editable-label)
 
-**Note** : Do Install [react-bootstrap](https://react-bootstrap.github.io/getting-started/introduction#examples) for better UI
+**Note** : Do Install [react-bootstrap](https://react-bootstrap.github.io/getting-started/introduction#examples) for better UI.
