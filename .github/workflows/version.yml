@@ -1,8 +1,8 @@
 name: Run versionist
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - master
 
 jobs:
   versionist:
@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: tmigone/versionist-action@master
       with:
-        github_email: 'tomasmigone@gmail.com'
-        github_username: 'Tomás Migone'
+        github_email: 'Mustafamemon490@gmail.com'
+        github_username: 'Mustafamemon'
         github_token: ${{ secrets.GITHUB_TOKEN }}
         npm_token: ${{ secrets.NPM_TOKEN }}
