@@ -10,7 +10,12 @@ import {
 
 import style from "./css/editablelabel.css";
 
+
 const EditableLabel = (props) => {
+  let target = {
+    value :'',
+    name:props.name || ''
+  }
   const textInput = useRef(null);
   const [view, setView] = useState("label");
   const [value, setValue] = useState(props.initialValue);
@@ -39,8 +44,8 @@ const EditableLabel = (props) => {
       setValue(e.target.value || "-");
       setPrevious(e.target.value || "-");
       setView("label");
-
-      props.save(e.target.value);
+      target.value = e.target.value
+      props.save({...target});
     }
   };
 
@@ -97,7 +102,8 @@ const EditableLabel = (props) => {
             onClick={() => {
               const e = { ...textInput };
               setPrevious(e.current.value);
-              props.save(e.current.value);
+              target.value = e.current.value
+              props.save({...target});
               setView("label");
             }}
           >
@@ -173,6 +179,7 @@ export default EditableLabel;
 EditableLabel.propTypes = {
   initialValue: PropTypes.string.isRequired,
   save: PropTypes.func.isRequired,
+  name:PropTypes.string,
   labelClass: PropTypes.string,
   inputClass: PropTypes.string,
   inputType: PropTypes.string,
